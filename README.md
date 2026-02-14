@@ -34,6 +34,26 @@ https://textual.textualize.io/
 - `move A1 D1` or `move A1 D1 cap B2`
 - `moves`
 
+## Install from git (library)
+
+Install from GitHub:
+
+```powershell
+python -m pip install "pynmm @ git+https://github.com/orlin369/pynmm.git@dev"
+```
+
+Optional Textual UI:
+
+```powershell
+python -m pip install "pynmm[tui] @ git+https://github.com/orlin369/pynmm.git@dev"
+```
+
+Run the UI after install:
+
+```powershell
+pynmm-tui
+```
+
 ## Library usage (direct)
 
 ```python

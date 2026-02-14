@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pynmm"
+version = "0.1.0"
+description = "Nine Men's Morris engine + AI (Python) with an optional Textual TUI."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Orlin Dimitrov" }]
+keywords = ["nine-mens-morris", "ai", "game"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.optional-dependencies]
+# Optional dependency for the Textual terminal UI.
+tui = ["textual>=0.1.0"]
+
+[project.urls]
+Repository = "https://github.com/orlin369/pynmm"
+
+[project.scripts]
+pynmm-tui = "pynmm.tui:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["morris_textual"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["artifitial_inteligence*", "pynmm*"]
+
