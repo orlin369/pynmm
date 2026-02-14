@@ -8,7 +8,7 @@ from artifitial_inteligence import Board, BoardIndex, EvalSettings, GameControll
 try:
     from textual import on
     from textual.app import App, ComposeResult
-    from textual.containers import Horizontal, Vertical
+    from textual.containers import Horizontal, Vertical, VerticalScroll
     from textual.widgets import Footer, Header, Input, Static
 except Exception as e:  # pragma: no cover
     raise ImportError(
@@ -335,9 +335,12 @@ Screen {
 }
 
 #log {
+    padding: 1;
+}
+
+#log_scroll {
     height: 1fr;
     border: round $secondary;
-    padding: 1;
 }
 
 #cmd {
@@ -356,7 +359,8 @@ Screen {
             yield Static(id="board")
             with Vertical(id="side"):
                 yield Static(id="status")
-                yield Static(id="log")
+                with VerticalScroll(id="log_scroll"):
+                    yield Static(id="log")
         yield Input(placeholder="Type a command (help, new ai, new pvp, drop A1, move A1 D1, moves)", id="cmd")
         yield Footer()
 
@@ -372,6 +376,8 @@ Screen {
         self.log_lines.append(line)
         self.log_lines = self.log_lines[-200:]
         self.query_one("#log", Static).update("\n".join(self.log_lines[-40:]))
+        # Keep the newest output visible without requiring manual scrolling.
+        self.query_one("#log_scroll", VerticalScroll).scroll_end(animate=False)
 
     def _refresh(self) -> None:
         self.query_one("#board", Static).update(render_board(self.session.board))
