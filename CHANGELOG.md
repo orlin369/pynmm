@@ -14,6 +14,7 @@ The format is based on *Keep a Changelog* and this project aims to follow *Seman
 ### Changed
 
 ### Fixed
+- Textual TUI crash on startup when running `src/demo.py` due to dataclass mutable defaults (`GameSession.eval_settings` / `GameSession.board`).
 
 ### Removed
 
