@@ -25,7 +25,31 @@ https://textual.textualize.io/
    python src\demo.py
    ```
 
-3. In-game commands:
+## How To Play (Terminal UI)
+
+1. Start a new game:
+- `new ai` (you vs AI)
+- `new pvp` (two players on one computer)
+
+2. Place a piece (stage 1):
+- `drop A1`
+- If it forms a mill and you must capture: `drop A1 cap D1`
+
+3. Move a piece (stage 2, and stage 3 flying):
+- `move A1 D1`
+- If it forms a mill and you must capture: `move A1 D1 cap B2`
+
+4. Other useful commands:
+- `moves` shows legal moves (use this when unsure what is allowed)
+- `set depth 3` (AI search depth, ai mode)
+- `set time 200` (AI time limit ms, ai mode)
+- `help`
+- `quit`
+
+5. Position names:
+`A1 D1 G1 / B2 D2 F2 / C3 D3 E3 / A4 B4 C4 E4 F4 G4 / C5 D5 E5 / B6 D6 F6 / A7 D7 G7`
+
+## In-game commands (quick)
 
 - `help`
 - `new ai` (play vs machine)
