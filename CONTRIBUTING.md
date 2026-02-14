@@ -13,6 +13,10 @@ This repo is a Python Nine Men's Morris engine + AI with a Textual terminal UI u
 - Keep behavior parity first.
 - If you refactor, do it only after rules, move generation, evaluation scoring, and API entrypoints are correct.
 - Preserve familiar naming when it helps cross-referencing (including original misspellings like `artifitial_inteligence`).
+- Keep code organization consistent:
+  - Put enums in `src/artifitial_inteligence/enums/` (one enum per file).
+  - Put dataclasses in `src/artifitial_inteligence/models/` (one dataclass per file).
+  - Keep compatibility shims small and import-only.
 - Keep UI logic deterministic.
 - The UI should validate moves by matching against `Board.get_moves()` output, not by re-implementing legality.
 - Keep optional dependencies optional.

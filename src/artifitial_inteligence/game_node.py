@@ -1,16 +1,9 @@
-﻿from __future__ import annotations
+"""Compatibility shim.
 
-from dataclasses import dataclass
-from typing import Optional
+The actual GameNode dataclass lives in `artifitial_inteligence.models.game_node`.
+"""
 
-from .move import Move
+from .models.game_node import GameNode
 
+__all__ = ["GameNode"]
 
-@dataclass
-class GameNode:
-    score: int
-    move: Optional[Move] = None
-
-    def dispose(self) -> None:
-        if self.move is not None:
-            self.move.dispose()

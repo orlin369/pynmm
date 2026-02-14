@@ -28,6 +28,7 @@ This repo contains a Python Nine Men's Morris engine + AI plus a Textual termina
 - Keep the core library isolated in `src/artifitial_inteligence/`.
 - Keep `src/demo.py` as the runnable entrypoint for terminal UX.
 - Keep UI code in `src/morris_textual.py` so the library can be used headless.
+- Keep enums in `src/artifitial_inteligence/enums/` and dataclasses in `src/artifitial_inteligence/models/`.
 
 **Textual Terminal UI Practices**
 - Keep the UI command-driven and deterministic: validate moves by matching against `Board.get_moves()` output rather than re-implementing legality.
