@@ -9,7 +9,7 @@ def main() -> None:
     """
 
     try:
-        from morris_textual import MorrisApp
+        from .tui_app import MorrisApp
     except Exception as e:
         print("Textual UI not available.")
         print('Install with: python -m pip install "pynmm[tui]"')
