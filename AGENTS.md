@@ -10,7 +10,7 @@ This repo contains a Python Nine Men's Morris engine + AI plus a Textual termina
 **Contributing**
 - Follow `CONTRIBUTING.md` for best practices and the change checklist.
 - Treat `CHANGELOG.md` updates as mandatory per the rules below.
-- Branching workflow is mandatory: feature work must go through `develop` via local merges (no pull requests, no direct commits to `main`).
+- Branching workflow is mandatory: feature work must go through `dev` via local merges (no pull requests, no direct commits to `main`).
 - After merging, always delete topic branches on both local and remote.
 
 **Change Tracking (Changelog)**

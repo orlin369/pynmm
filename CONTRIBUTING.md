@@ -22,32 +22,32 @@ This repo is a Python Nine Men's Morris engine + AI with a Textual terminal UI u
 
 - Pull requests are not used in this repo.
 - Do not commit directly to `main`.
-- Use a long-lived integration branch named `develop`.
-- Create topic branches from `develop`:
+- Use a long-lived integration branch named `dev`.
+- Create topic branches from `dev`:
   - `feature/<short-topic>` for new work
   - `fix/<short-topic>` for bug fixes
   - `chore/<short-topic>` for non-behavioral maintenance
 - Keep branches short-lived and scoped (one topic per branch).
-- Merge topic branches into `develop` locally (use `--no-ff` so the merge is visible in history).
+- Merge topic branches into `dev` locally (use `--no-ff` so the merge is visible in history).
 - Always delete topic branches after merge (both local and remote).
-- Keep `develop` green and releasable.
+- Keep `dev` green and releasable.
 - Release flow (no PRs):
-  - Merge `develop` into `main` locally (use `--no-ff`)
+  - Merge `dev` into `main` locally (use `--no-ff`)
   - Tag releases (optional but recommended): `vX.Y.Z`
   - Push `main` (and tags, if any) to `origin`
 
 Suggested commands:
 
 ```powershell
-git checkout develop
+git checkout dev
 git pull
 git checkout -b feature/your-topic
 ```
 
-Merge a completed topic branch into `develop`:
+Merge a completed topic branch into `dev`:
 
 ```powershell
-git checkout develop
+git checkout dev
 git pull
 git merge --no-ff feature/your-topic
 git push
@@ -63,16 +63,16 @@ git branch -d feature/your-topic
 git push origin --delete feature/your-topic
 ```
 
-Update branch with latest `develop` (pick one approach and be consistent):
+Update branch with latest `dev` (pick one approach and be consistent):
 
 ```powershell
-# Rebase onto latest develop (clean history)
+# Rebase onto latest dev (clean history)
 git fetch
-git rebase origin/develop
+git rebase origin/dev
 
-# Or merge develop into your branch (preserve merge commits)
+# Or merge dev into your branch (preserve merge commits)
 git fetch
-git merge origin/develop
+git merge origin/dev
 ```
 
 ## Change Tracking (Required)
