@@ -29,6 +29,7 @@ This repo is a Python Nine Men's Morris engine + AI with a Textual terminal UI u
   - `chore/<short-topic>` for non-behavioral maintenance
 - Keep branches short-lived and scoped (one topic per branch).
 - Merge topic branches into `develop` locally (use `--no-ff` so the merge is visible in history).
+- Always delete topic branches after merge (both local and remote).
 - Keep `develop` green and releasable.
 - Release flow (no PRs):
   - Merge `develop` into `main` locally (use `--no-ff`)
@@ -50,6 +51,16 @@ git checkout develop
 git pull
 git merge --no-ff feature/your-topic
 git push
+```
+
+Delete the merged topic branch (required):
+
+```powershell
+# Local
+git branch -d feature/your-topic
+
+# Remote
+git push origin --delete feature/your-topic
 ```
 
 Update branch with latest `develop` (pick one approach and be consistent):
