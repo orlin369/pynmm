@@ -21,6 +21,7 @@ This repo contains a Python Nine Men's Morris engine + AI plus a Textual termina
   - public API surface (imports, function signatures, enums/values)
   - UI commands/rendering/help text
   - run instructions, dependencies, repo layout
+- Effective 2026-02-14: every new changelog bullet must include `(commit <hash>)` so we can answer "what changed when" from git history.
 - Do not merge “behavior changes” without an entry under `[Unreleased]`.
 - When cutting a release, move the entries from `[Unreleased]` into `## X.Y.Z - YYYY-MM-DD`.
 

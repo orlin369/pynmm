@@ -83,7 +83,15 @@ git merge origin/dev
 
 - Update `CHANGELOG.md` for every user-facing change (rules, AI behavior, public API, UI commands, run instructions, dependencies, layout).
 - Put changes in `## [Unreleased]` under one of: `Added`, `Changed`, `Fixed`, `Removed`.
-- For a release, move `[Unreleased]` items into `## X.Y.Z - YYYY-MM-DD`.
+- Effective 2026-02-14: every new changelog bullet must include a trace reference to the git commit hash that introduced the change, e.g.:
+  - `- Fix TUI log scrolling. (commit 1a2b3c4)`
+- For a release, move `[Unreleased]` items into `## X.Y.Z - YYYY-MM-DD` (release date).
+  - The date is when it shipped, not when it was coded.
+
+Practical workflow for commit hashes:
+1. Make your code change and commit it.
+2. Get the short hash: `git rev-parse --short HEAD`
+3. Add/update the `CHANGELOG.md` bullet to include `(commit <hash>)` and commit that changelog update.
 
 ## Testing And Sanity Checks
 
