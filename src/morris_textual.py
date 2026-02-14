@@ -1,6 +1,6 @@
 ﻿from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 from artifitial_inteligence import Board, BoardIndex, EvalSettings, GameController, GameState, Move, MoveType, Player
@@ -102,8 +102,8 @@ class GameSession:
     time_limit_ms: int = 200
     depth: int = 3
 
-    board: Board = Board(Player.White)
-    eval_settings: EvalSettings = EvalSettings()
+    board: Board = field(default_factory=lambda: Board(Player.White))
+    eval_settings: EvalSettings = field(default_factory=EvalSettings)
 
     ai: Optional[GameController] = None
     game_over: bool = False
