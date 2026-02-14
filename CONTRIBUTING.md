@@ -1,0 +1,118 @@
+# Contributing
+
+This repo is a Python Nine Men's Morris engine + AI with a Textual terminal UI under `src/`.
+
+## Quick Start
+
+- Python version: 3.12+ is recommended (the project currently runs on 3.12).
+- Optional UI dependency: `python -m pip install textual`
+- Run the terminal UI: `python src\demo.py`
+
+## Project Conventions
+
+- Keep behavior parity first.
+- If you refactor, do it only after rules, move generation, evaluation scoring, and API entrypoints are correct.
+- Preserve familiar naming when it helps cross-referencing (including original misspellings like `artifitial_inteligence`).
+- Keep code organization consistent:
+  - Put enums in `src/artifitial_inteligence/enums/` (one enum per file).
+  - Put dataclasses in `src/artifitial_inteligence/models/` (one dataclass per file).
+  - Keep compatibility shims small and import-only.
+- Keep UI logic deterministic.
+- The UI should validate moves by matching against `Board.get_moves()` output, not by re-implementing legality.
+- Keep optional dependencies optional.
+- `textual` should remain isolated to `src/morris_textual.py` and fail gracefully when missing.
+
+## Branching And Git Workflow (Required)
+
+- Pull requests are not used in this repo.
+- Do not commit directly to `main`.
+- Use a long-lived integration branch named `dev`.
+- Create topic branches from `dev`:
+  - `feature/<short-topic>` for new work
+  - `fix/<short-topic>` for bug fixes
+  - `chore/<short-topic>` for non-behavioral maintenance
+- Keep branches short-lived and scoped (one topic per branch).
+- Merge topic branches into `dev` locally (use `--no-ff` so the merge is visible in history).
+- Always delete topic branches after merge (both local and remote).
+- Keep `dev` green and releasable.
+- Release flow (no PRs):
+  - Merge `dev` into `main` locally (use `--no-ff`)
+  - Tag releases (optional but recommended): `vX.Y.Z`
+  - Push `main` (and tags, if any) to `origin`
+
+Suggested commands:
+
+```powershell
+git checkout dev
+git pull
+git checkout -b feature/your-topic
+```
+
+Merge a completed topic branch into `dev`:
+
+```powershell
+git checkout dev
+git pull
+git merge --no-ff feature/your-topic
+git push
+```
+
+Delete the merged topic branch (required):
+
+```powershell
+# Local
+git branch -d feature/your-topic
+
+# Remote
+git push origin --delete feature/your-topic
+```
+
+Update branch with latest `dev` (pick one approach and be consistent):
+
+```powershell
+# Rebase onto latest dev (clean history)
+git fetch
+git rebase origin/dev
+
+# Or merge dev into your branch (preserve merge commits)
+git fetch
+git merge origin/dev
+```
+
+## Change Tracking (Required)
+
+- Update `CHANGELOG.md` for every user-facing change (rules, AI behavior, public API, UI commands, run instructions, dependencies, layout).
+- Put changes in `## [Unreleased]` under one of: `Added`, `Changed`, `Fixed`, `Removed`.
+- Effective 2026-02-14: every new changelog bullet must include a trace reference to the git commit hash that introduced the change, e.g.:
+  - `- Fix TUI log scrolling. (commit 1a2b3c4)`
+- For a release, move `[Unreleased]` items into `## X.Y.Z - YYYY-MM-DD` (release date).
+  - The date is when it shipped, not when it was coded.
+
+Practical workflow for commit hashes:
+1. Make your code change and commit it.
+2. Get the short hash: `git rev-parse --short HEAD`
+3. Add/update the `CHANGELOG.md` bullet to include `(commit <hash>)` and commit that changelog update.
+
+## Testing And Sanity Checks
+
+- Import check: `python -c "import sys; sys.path.insert(0,'src'); import artifitial_inteligence"`
+- Smoke run (after installing Textual): `python src\demo.py`
+- Manual spot-check after changes:
+  - Stage transitions: stage 1 if any unplaced > 0; stage 3 if either player placed < 4; else stage 2
+  - Mill detection and capture legality (including the "all opponent pieces are in mills" exception)
+  - Win detection (opponent has < 3 pieces after placement is finished, and/or opponent is blocked)
+  - `moves` output matches the moves the command parser accepts
+
+## Change Checklist
+
+- `CHANGELOG.md` updated (required for behavior/API/UI/docs changes).
+- No new hard dependencies added to the core library (`src/artifitial_inteligence/`).
+- If you changed rules or move generation: include at least one reproducible example position and expected move(s) in the commit message body or `CHANGELOG.md`.
+- Avoid committing generated files (`__pycache__/`, `*.pyc`).
+- Keep changes small and reviewable; avoid sweeping rewrites without tests.
+
+## Commit Guidance
+
+- Keep commits focused and descriptive.
+- Prefer imperative subject lines like: `Fix capture exception rule in stage 2`.
+- If a commit changes behavior, it must also update `CHANGELOG.md`.
