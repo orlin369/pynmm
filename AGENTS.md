@@ -8,18 +8,18 @@ This repo contains a Python Nine Men's Morris engine + AI plus a Textual termina
 - Prefer small, reviewable changes; avoid sweeping rewrites without tests.
 
 **Contributing**
-- Follow `CONTRIBUTING.md` for best practices and PR checklist.
+- Follow `CONTRIBUTING.md` for best practices and the change checklist.
 - Treat `CHANGELOG.md` updates as mandatory per the rules below.
-- Branching workflow is mandatory: feature work must go through `develop` via PRs (no direct commits to `main`).
+- Branching workflow is mandatory: feature work must go through `develop` via local merges (no pull requests, no direct commits to `main`).
 
 **Change Tracking (Changelog)**
 - Maintain `CHANGELOG.md` in Keep a Changelog format (`[Unreleased]` with `Added/Changed/Fixed/Removed`).
 - Update `CHANGELOG.md` for every change that affects any of:
-- game rules, move generation, mill/capture logic, win detection
-- evaluation/scoring, search, time/depth behavior
-- public API surface (imports, function signatures, enums/values)
-- UI commands/rendering/help text
-- run instructions, dependencies, repo layout
+  - game rules, move generation, mill/capture logic, win detection
+  - evaluation/scoring, search, time/depth behavior
+  - public API surface (imports, function signatures, enums/values)
+  - UI commands/rendering/help text
+  - run instructions, dependencies, repo layout
 - Do not merge “behavior changes” without an entry under `[Unreleased]`.
 - When cutting a release, move the entries from `[Unreleased]` into `## X.Y.Z - YYYY-MM-DD`.
 

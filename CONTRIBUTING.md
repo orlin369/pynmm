@@ -20,18 +20,20 @@ This repo is a Python Nine Men's Morris engine + AI with a Textual terminal UI u
 
 ## Branching And Git Workflow (Required)
 
+- Pull requests are not used in this repo.
 - Do not commit directly to `main`.
 - Use a long-lived integration branch named `develop`.
-- Create feature work from `develop`:
-- `feature/<short-topic>` for new work
-- `fix/<short-topic>` for bug fixes
-- `chore/<short-topic>` for non-behavioral maintenance
+- Create topic branches from `develop`:
+  - `feature/<short-topic>` for new work
+  - `fix/<short-topic>` for bug fixes
+  - `chore/<short-topic>` for non-behavioral maintenance
 - Keep branches short-lived and scoped (one topic per branch).
-- Open a PR into `develop` for review.
+- Merge topic branches into `develop` locally (use `--no-ff` so the merge is visible in history).
 - Keep `develop` green and releasable.
-- Release flow:
-- Merge `develop` into `main` via PR when you are ready to release.
-- Tag releases (optional but recommended): `vX.Y.Z`.
+- Release flow (no PRs):
+  - Merge `develop` into `main` locally (use `--no-ff`)
+  - Tag releases (optional but recommended): `vX.Y.Z`
+  - Push `main` (and tags, if any) to `origin`
 
 Suggested commands:
 
@@ -39,6 +41,15 @@ Suggested commands:
 git checkout develop
 git pull
 git checkout -b feature/your-topic
+```
+
+Merge a completed topic branch into `develop`:
+
+```powershell
+git checkout develop
+git pull
+git merge --no-ff feature/your-topic
+git push
 ```
 
 Update branch with latest `develop` (pick one approach and be consistent):
@@ -64,16 +75,16 @@ git merge origin/develop
 - Import check: `python -c "import sys; sys.path.insert(0,'src'); import artifitial_inteligence"`
 - Smoke run (after installing Textual): `python src\demo.py`
 - Manual spot-check after changes:
-- Stage transitions: stage 1 if any unplaced > 0; stage 3 if either player placed < 4; else stage 2
-- Mill detection and capture legality (including the "all opponent pieces are in mills" exception)
-- Win detection (opponent has < 3 pieces after placement is finished, and/or opponent is blocked)
-- `moves` output matches the moves the command parser accepts
+  - Stage transitions: stage 1 if any unplaced > 0; stage 3 if either player placed < 4; else stage 2
+  - Mill detection and capture legality (including the "all opponent pieces are in mills" exception)
+  - Win detection (opponent has < 3 pieces after placement is finished, and/or opponent is blocked)
+  - `moves` output matches the moves the command parser accepts
 
-## Pull Request Checklist
+## Change Checklist
 
 - `CHANGELOG.md` updated (required for behavior/API/UI/docs changes).
 - No new hard dependencies added to the core library (`src/artifitial_inteligence/`).
-- If you changed rules or move generation: include at least one reproducible example position and expected move(s) in the PR description.
+- If you changed rules or move generation: include at least one reproducible example position and expected move(s) in the commit message body or `CHANGELOG.md`.
 - Avoid committing generated files (`__pycache__/`, `*.pyc`).
 - Keep changes small and reviewable; avoid sweeping rewrites without tests.
 
