@@ -20,6 +20,7 @@ Note (effective 2026-02-14): new entries should include `(commit <hash>)` for tr
 ### Fixed
 - Textual TUI crash on startup when running `src/demo.py` due to dataclass mutable defaults (`GameSession.eval_settings` / `GameSession.board`).
 - Textual TUI side log now scrolls and auto-scrolls as new lines are appended.
+- Textual TUI board rendering no longer wraps in narrow layouts; board panel is horizontally scrollable. (commit 2c8cd57)
 
 ### Removed
 

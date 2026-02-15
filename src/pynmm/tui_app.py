@@ -10,7 +10,7 @@ from .tui_session import GameSession
 try:
     from textual import on
     from textual.app import App, ComposeResult
-    from textual.containers import Horizontal, Vertical, VerticalScroll
+    from textual.containers import Horizontal, HorizontalScroll, Vertical, VerticalScroll
     from textual.widgets import Footer, Header, Input, Static
 except Exception as e:  # pragma: no cover
     raise ImportError(
@@ -33,9 +33,14 @@ Screen {
 }
 
 #board {
+    text-wrap: nowrap;
+}
+
+#board_scroll {
     width: 2fr;
     border: round $primary;
     padding: 1;
+    overflow: auto;
 }
 
 #side {
@@ -71,7 +76,8 @@ Screen {
     def compose(self) -> ComposeResult:
         yield Header()
         with Horizontal(id="main"):
-            yield Static(id="board")
+            with HorizontalScroll(id="board_scroll"):
+                yield Static(id="board")
             with Vertical(id="side"):
                 yield Static(id="status")
                 with VerticalScroll(id="log_scroll"):
